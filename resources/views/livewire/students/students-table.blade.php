@@ -2,6 +2,10 @@
     @include('partials.students-heading')
 
     <div>
+        <div class="mb-4">
+            <input id="searchfield" type="text" wire:model.live.debounce.500ms="search" placeholder="Cerca per nome..." class="border p-2 rounded">
+        </div>
+
         @if (session()->has('message'))
         <div class="alert alert-success">{{ session('message') }}</div>
         @endif

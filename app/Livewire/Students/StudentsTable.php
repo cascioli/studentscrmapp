@@ -4,11 +4,14 @@ namespace App\Livewire\Students;
 
 use Livewire\Component;
 use App\Models\Student;
+use Illuminate\Support\Facades\Log;
 use Livewire\WithPagination;
 
 class StudentsTable extends Component
 {
     use WithPagination;
+
+    public $search = '';
 
     protected $listeners = [
         'studentUpdated' => '$refresh',
@@ -16,7 +19,8 @@ class StudentsTable extends Component
 
     public function render()
     {
-        $students = Student::orderBy('id', 'asc')
+        $students = Student::where('name', 'like', '%' . $this->search . '%')
+            ->orderBy('id', 'asc')
             ->paginate(10);
 
         return view('livewire.students.students-table', compact('students'));
