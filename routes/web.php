@@ -3,6 +3,7 @@
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
+use App\Livewire\Students\CreateStudent;
 use App\Livewire\Students\EditStudent;
 use App\Livewire\Students\StudentsTable;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +28,7 @@ Route::group(['prefix' => 'students', 'middleware' => ['auth', 'verified']], fun
     Route::redirect('/', 'students/list');
 
     Route::get('/list', StudentsTable::class)->name('students.list');
-    Route::get('/store', Password::class)->name('students.store');
+    Route::get('/store', CreateStudent::class)->name('students.store');
     Route::get('/edit/{id}', EditStudent::class)->name('students.edit');
 });
 

@@ -5,6 +5,7 @@ namespace App\Livewire\Students;
 use App\Models\ItsCenter;
 use Livewire\Component;
 use App\Models\Student;
+use Illuminate\Support\Facades\Hash;
 
 class EditStudent extends Component
 {
@@ -38,7 +39,7 @@ class EditStudent extends Component
         $student->email = $this->email;
         $student->email_verified_at = $this->email_verified_at;
         if ($this->password) {
-            $student->password = bcrypt($this->password);
+            $student->password = Hash::make($this->password);
         }
         $student->its_id = $this->its_id;
         $student->save();

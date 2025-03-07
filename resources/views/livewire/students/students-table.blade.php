@@ -2,8 +2,14 @@
     @include('partials.students-heading')
 
     <div>
-        <div class="mb-4">
-            <input id="searchfield" type="text" wire:model.live.debounce.500ms="search" placeholder="Cerca per nome..." class="border p-2 rounded">
+        <div>
+            <div class="mb-4">
+                <input id="searchfield" type="text" wire:model.live.debounce.500ms="search" placeholder="Cerca per nome..." class="border p-2 rounded">
+            </div>
+
+            <flux:button wire:click="store()" class="bg-blue-500 text-white px-2 py-1 rounded">
+                Aggiungi studente
+            </flux:button>
         </div>
 
         @if (session()->has('message'))

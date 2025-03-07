@@ -30,6 +30,10 @@ class StudentsTable extends Component
     {
         return redirect()->route('students.edit', $id);
     }
+    public function store()
+    {
+        return redirect()->route('students.store');
+    }
 
     public function delete($id)
     {
