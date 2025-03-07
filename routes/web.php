@@ -1,5 +1,11 @@
 <?php
 
+use App\Livewire\Courses\CoursesTable;
+use App\Livewire\Courses\CreateCourse;
+use App\Livewire\Courses\EditCourse;
+use App\Livewire\Itscenters\CreateIts;
+use App\Livewire\Itscenters\EditIts;
+use App\Livewire\Itscenters\ItsTable;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
@@ -16,13 +22,21 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::view('itscenters', 'itscenters')
-    ->middleware(['auth', 'verified'])
-    ->name('itscenters.list');
+Route::group(['prefix' => 'itscenters', 'middleware' => ['auth', 'verified']], function () {
+    Route::redirect('/', 'itscenters/list');
 
-Route::view('courses', 'courses')
-    ->middleware(['auth', 'verified'])
-    ->name('courses.list');
+    Route::get('/list', ItsTable::class)->name('its.list');
+    Route::get('/store', CreateIts::class)->name('its.store');
+    Route::get('/edit/{id}', EditIts::class)->name('its.edit');
+});
+
+Route::group(['prefix' => 'courses', 'middleware' => ['auth', 'verified']], function () {
+    Route::redirect('/', 'courses/list');
+
+    Route::get('/list', CoursesTable::class)->name('courses.list');
+    Route::get('/store', CreateCourse::class)->name('courses.store');
+    Route::get('/edit/{id}', EditCourse::class)->name('courses.edit');
+});
 
 Route::group(['prefix' => 'students', 'middleware' => ['auth', 'verified']], function () {
     Route::redirect('/', 'students/list');

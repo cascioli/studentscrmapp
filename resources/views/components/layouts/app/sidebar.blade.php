@@ -17,7 +17,7 @@
             <flux:navlist.group heading="Gestione" class="grid">
                 <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                 <flux:navlist.item icon="home" :href="route('students.list')" :current="request()->routeIs('students.list')" wire:navigate>{{ __('Studenti') }}</flux:navlist.item>
-                <flux:navlist.item icon="book-open-text" :href="route('itscenters.list')" :current="request()->routeIs('itscenters.list')" wire:navigate>{{ __('ITS') }}</flux:navlist.item>
+                <flux:navlist.item icon="book-open-text" :href="route('its.list')" :current="request()->routeIs('its.list')" wire:navigate>{{ __('ITS') }}</flux:navlist.item>
                 <flux:navlist.item icon="folder-git-2" :href="route('courses.list')" :current="request()->routeIs('courses.list')" wire:navigate>{{ __('Corsi') }}</flux:navlist.item>
             </flux:navlist.group>
         </flux:navlist>
