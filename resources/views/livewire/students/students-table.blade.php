@@ -23,6 +23,7 @@
                         <th class="px-4 py-2">ID</th>
                         <th class="px-4 py-2">Nome</th>
                         <th class="px-4 py-2">Email</th>
+                        <th class="px-4 py-2">ITS</th>
                         <th class="px-4 py-2">Azioni</th>
                     </tr>
                 </thead>
@@ -32,6 +33,7 @@
                         <td class="border px-4 py-2">{{ $student->id }}</td>
                         <td class="border px-4 py-2">{{ $student->name }}</td>
                         <td class="border px-4 py-2">{{ $student->email }}</td>
+                        <td class="border px-4 py-2">{{ $student->its->nome }}</td>
                         <td class="border px-4 py-2">
                             <div class="flex space-x-2">
                                 <button wire:click="edit({{ $student->id }})" class="bg-blue-500 text-white px-2 py-1 rounded">Modifica</button>

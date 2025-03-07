@@ -19,7 +19,8 @@ class StudentsTable extends Component
 
     public function render()
     {
-        $students = Student::where('name', 'like', '%' . $this->search . '%')
+        $students = Student::with('its')
+            ->where('name', 'like', '%' . $this->search . '%')
             ->orderBy('id', 'asc')
             ->paginate(10);
 
