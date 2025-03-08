@@ -52,10 +52,33 @@
             @enderror
         </flux:field>
         <div class="mb-6"></div>
+        <div class="form-group">
+            <label for="courses">Seleziona i corsi</label>
+            <select wire:model="selectedCourses" id="courses" class="form-control" multiple>
+                @foreach($courses as $course)
+                <option value="{{ $course->id }}">
+                    {{ $course->nome }}
+                </option>
+                @endforeach
+            </select>
+        </div>
+        <div class="mb-6"></div>
         <flux:button type="submit" flux:btn flux:btn-primary>
             Aggiorna Studente
         </flux:button>
     </form>
+
+    <hr>
+
+    <h5>Corsi Assegnati:</h5>
+    <ul>
+        @foreach($student->courses as $course)
+        <li>
+            {{ $course->nome }}
+            <button wire:click="removeCourse({{ $course->id }})" class="bg-red-500 text-white px-2 py-1 rounded" onclick="confirm('Sei sicuro di voler dissociare questo corso dallo studente?') || event.stopImmediatePropagation()">Rimuovi</button>
+        </li>
+        @endforeach
+    </ul>
 
 
 </flux:container>

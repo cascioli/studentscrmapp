@@ -21,4 +21,9 @@ class Course extends Model
     {
         return $this->belongsTo(ItsCenter::class, 'its_id');
     }
+
+    public function students()
+    {
+        return $this->belongsToMany(Student::class, 'course_student', 'course_id', 'student_id')->withTimestamps();
+    }
 }
