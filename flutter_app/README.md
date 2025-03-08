@@ -1,6 +1,29 @@
 # flutter_app
 
-A new Flutter project.
+```yaml
+lib/
+├── blocs/
+│   ├── authentication/
+│   │   ├── auth_bloc.dart
+│   │   ├── auth_event.dart
+│   │   └── auth_state.dart
+│   └── courses/
+│       ├── courses_bloc.dart
+│       ├── courses_event.dart
+│       └── courses_state.dart
+├── models/
+│   └── course.dart
+├── repositories/
+│   ├── auth_repository.dart
+│   └── courses_repository.dart
+├── screens/
+│   ├── login_screen.dart
+│   └── home_screen.dart
+├── services/
+│   └── api_service.dart
+└── main.dart
+
+```
 
 ## Getting Started
 
