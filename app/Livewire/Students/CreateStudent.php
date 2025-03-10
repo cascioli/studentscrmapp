@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Students;
 
+use App\Models\Course;
 use App\Models\Student;
 use App\Models\ItsCenter;
 use Livewire\Component;
@@ -13,10 +14,22 @@ class CreateStudent extends Component
 {
     public $name, $email, $password, $password_confirmation, $its_id;
     public $itsOptions = [];
+    public $courses = [];
+    public $selectedCourses = [];
 
     public function mount()
     {
         $this->itsOptions = ItsCenter::all();
+
+        if ($this->its_id != null) {
+            $this->courses = Course::where('its_id', $this->its_id)->get();
+        }
+    }
+
+    public function updatedItsId($value)
+    {
+        $this->courses = Course::where('its_id', $value)->get();
+        $this->selectedCourses = [];
     }
 
     public function store()
@@ -41,7 +54,9 @@ class CreateStudent extends Component
         session()->flash('message', 'Studente creato con successo.');
         //$this->reset(['name', 'email', 'password', 'its_id']);
 
-        event(new Registered((Student::create($validated))));
+        event(new Registered(($student = Student::create($validated))));
+
+        $student->courses()->sync($this->selectedCourses);
 
         redirect()->route('students.list');
     }

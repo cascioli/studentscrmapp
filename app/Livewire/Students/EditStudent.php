@@ -49,12 +49,24 @@ class EditStudent extends Component
         if ($this->password) {
             $student->password = Hash::make($this->password);
         }
+
+        if ($student->its_id != $this->its_id) {
+            $student->courses()->detach();
+        }
+
         $student->its_id = $this->its_id;
         $student->save();
 
         $student->courses()->sync($this->selectedCourses);
 
         session()->flash('message', 'Studente aggiornato con successo.');
+    }
+
+    public function updatedItsId($value)
+    {
+        $this->courses = Course::where('its_id', $value)->get();
+
+        $this->selectedCourses = [];
     }
 
     public function removeCourse($courseId)

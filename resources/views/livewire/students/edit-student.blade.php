@@ -41,7 +41,7 @@
         <div class="mb-6"></div>
         <flux:field>
             <flux:label for="its_id" flux:text>ITS</flux:label>
-            <flux:select id="its_id" wire:model="its_id" flux:input>
+            <flux:select id="its_id" wire:model.live="its_id" flux:input>
                 <flux:select.option value="">Seleziona ITS</flux:select.option>
                 @foreach($itsOptions as $its)
                 <flux:select.option value="{{ $its->id }}">{{ $its->nome }}</flux:select.option>
@@ -54,7 +54,7 @@
         <div class="mb-6"></div>
         <div class="form-group">
             <label for="courses">Seleziona i corsi</label>
-            <select wire:model="selectedCourses" id="courses" class="form-control" multiple>
+            <select wire:model.live="selectedCourses" id="courses" class="form-control" multiple>
                 @foreach($courses as $course)
                 <option value="{{ $course->id }}">
                     {{ $course->nome }}
@@ -68,7 +68,7 @@
         </flux:button>
     </form>
 
-    <hr>
+    <div class="mb-6"></div>
 
     <h5>Corsi Assegnati:</h5>
     <ul>
@@ -82,3 +82,9 @@
 
 
 </flux:container>
+
+<script>
+    window.addEventListener('focus', function(event) {
+        Livewire.dispatch('updatedItsId');
+    });
+</script>
